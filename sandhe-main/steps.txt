@@ -1,0 +1,10 @@
+1. comment   // base:process.env.VITE_BASE_PATH || "/sandhe" in vite.config.js
+
+2. npm run dev
+
+3. if you get the below error
+'vite' is not recognized as an internal or external command,
+operable program or batch file.
+
+4. npm install
+5. npm run dev

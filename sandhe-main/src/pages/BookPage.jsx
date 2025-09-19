@@ -19,11 +19,20 @@ export default function BookPage() {
   const [otp, setOtp] = useState("");
   const [contact, setContact] = useState("");
 
-  // List of beaches with their accurate coordinates
-  const beaches = [
-    { name: "Myrtle Beach", coordinates: [33.6891, -78.8867] }, // Myrtle Beach, SC
-    { name: "Coligny Beach", coordinates: [32.1574, -80.7431] }, // Coligny Beach, SC
-  ];
+  const [userBeaches, setUserBeaches] = useState([]);
+
+  useEffect(() => {
+    console.log("userBeaches:", userBeaches); // Debugging
+    const fetchData = async () => {
+        const response = await axios.get(`http://babusofttech.in/sandhelp/public/api/beaches`);
+        setUserBeaches(response.data);
+    }
+
+    fetchData();
+}, [isAuthenticated, userContact]);
+  
+  console.log("userBeaches:", userBeaches); // Debugging
+  // console.log("beaches:", beaches); // Debugging
 
   // Default map center and zoom level
   const defaultMapCenter = [33.6891, -78.8867]; // Default center (Myrtle Beach)
@@ -35,7 +44,22 @@ export default function BookPage() {
     if (isAuthenticated && userContact) {
       setContact(userContact); // Populate the contact field
     }
+
   }, [isAuthenticated, userContact]);
+
+  // beaches = userBeaches;
+  // const [beaches, setBeaches] = useState(userBeaches);
+
+  // const beaches2 = userBeaches;
+
+  // List of beaches with their accurate coordinates
+  const beaches = userBeaches.length > 0 ? userBeaches : [
+    { name: "Myrtle Beach", coordinates: [33.6891, -78.8867] }, // Default beaches array
+    { name: "Coligny Beach", coordinates: [32.1574, -80.7431] }, // Default beaches array
+  ];
+
+  console.log("userBeaches:", userBeaches); // Debugging
+  console.log("beaches:", beaches); // Debugging
 
   // Handle "Continue" button click
   const handleContinueClick = async () => {
@@ -136,7 +160,7 @@ export default function BookPage() {
   // Get the coordinates of the selected beach
   const selectedBeach = beaches.find((beach) => beach.name === selectedLocation);
   const mapCenter = selectedBeach ? selectedBeach.coordinates : defaultMapCenter;
-
+  
   return (
     <Container fluid className="px-3 py-4">
       {/* Flex container for the two cards */}

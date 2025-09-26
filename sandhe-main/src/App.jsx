@@ -9,6 +9,11 @@ import ContactInfo from './pages/ContactInfo';
 import PaymentInfo from './pages/PaymentInfo';
 import Summary from './pages/Summary';
 import { AuthProvider } from './AuthContext';
+import WorkPage from './pages/WorkPage';
+import LoginWok from './pages/LoginWok';
+import WorkDashboard from './pages/WorkDashboard';
+import BookPageStart from './pages/BookPageStart';
+// import AddCart from './pages/AddCart';
 
 export default function App() {
   return (
@@ -18,7 +23,12 @@ export default function App() {
           <Layout>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/bookStart" element={<BookPageStart />} />
+              <Route path="/work" element={<WorkPage />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/loginWok" element={<LoginWok />} />
+              <Route path="/work-dashboard" element={<WorkDashboard />} />
+              {/* <Route path="/add-cart" element={<AddCart />} /> */}
               <Route path="/book" element={<BookPage />} />
               <Route path="/contact-info" element={<ContactInfo />} />
               <Route path="/payment-info" element={<PaymentInfo />} />

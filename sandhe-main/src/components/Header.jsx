@@ -29,7 +29,7 @@ export default function Header() {
                     <Nav className="ms-auto">
                         {!isAuthenticated ? (
                             <>
-                                <Link to="/login" className="nav-link">
+                                <Link to="/" className="nav-link">
                                     <Button variant="outline-primary" size="ms" className="me-2">
                                         Login
                                     </Button>
